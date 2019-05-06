@@ -25,6 +25,6 @@ typedef struct virtual_flash_s virtual_flash_t;
 bool virtual_flash_init(const virtual_flash_t *flash);
 
 size_t virtual_flash_read(const virtual_flash_t *flash, size_t address, void *dest, size_t len);
-size_t virtual_flash_erase(const virtual_flash_t *flash);
-size_t virtual_flash_write(const virtual_flash_t *flash);
+size_t virtual_flash_erase(const virtual_flash_t *flash, size_t address, size_t num_of_pages);
+size_t virtual_flash_write(const virtual_flash_t *flash, size_t address, const void *src, size_t len);
 #endif
