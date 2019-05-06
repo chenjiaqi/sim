@@ -10,6 +10,8 @@ typedef struct sim_cfg {
   uint32_t spare_size;
   uint32_t block_num;
   uint32_t pages_per_block;
+  uint32_t program_unit;
+  uint32_t total_pages;
 }sim_cfg_t;
 
 typedef struct sim {

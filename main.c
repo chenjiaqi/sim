@@ -2,19 +2,22 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "sim.h"
+#include "virtual_flash.h"
 int main(void) {
-  printf("hello world\n");
-  sim_cfg_t cfg = {
-    .page_size = 2048,
-    .spare_size = 64,
-    .block_num = 1024,
-    .pages_per_block = 64,
-  };
-  sim_t * sim = sim_allocate();
-  if(!sim) {
-    printf("sim allocate error");
+
+  virtual_flash_t cfg;
+  cfg.erase_size = 4096;
+  cfg.page_size = 4096;
+  cfg.num_of_pages = 512;
+  cfg.program_unit = 1;
+  strncpy(cfg.flash_path, "./flash", sizeof(cfg.flash_path));
+
+  virtual_flash_init(&cfg);
+
+  uint8_t buf[100];
+  virtual_flash_read(&cfg, 0, buf, sizeof(buf));
+  for(int i = 0; i < sizeof(buf); i++) {
+    printf("%02x ", buf[i]);
   }
-  sim->ops->init(sim, &cfg);
-  sim->ops->erase(sim, 0);
   return 0;
 }
