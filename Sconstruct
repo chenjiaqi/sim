@@ -1,1 +1,1 @@
-Program(['main.c','virtual_flash.c'])
+Program(['main.c','virtual_flash.c', 'fs.c', 'gc.c'])
